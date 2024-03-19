@@ -2,12 +2,27 @@
 import { Link } from "react-router-dom";
 
 // REACT
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // ICONS
 import { FaArrowLeft } from "react-icons/fa";
 
 const Practice = () => {
+  const [practice, setPractice] = useState(null);
+
+  useEffect(() => {
+    const fetchPractice = async () => {
+      const response = await fetch("https://music-practice-app.vercel.app/");
+      const json = await response.json();
+
+      if (response.ok) {
+        setPractice(json);
+      }
+    };
+    fetchPractice;
+  }, []);
+
   const goBack = useNavigate();
 
   const styles = {
@@ -35,36 +50,33 @@ const Practice = () => {
       </div>
       <h1 className={styles.title}>Weekly Practice Goals</h1>
 
-      {/* PRACTICE ITEM ONE */}
-      <div className={styles.container}>
-        <h2 className={styles.practiceTitle}>Bb Major - 2 octaves</h2>
-        <p className={styles.reps}>10 reps</p>
-        <h3 className={styles.aims}>Intonation</h3>
-        {/* <p className={styles.bars}>BARS</p> */}
-        <div className={styles.notesContainer}>
-          <p className={styles.notes}>Notes</p>
-          <p className={styles.notesDescription}>
-            Bb major with correct fingers and good intonation. Repeat this five
-            times.
-          </p>
-        </div>
-      </div>
+      {practice &&
+        practice.map(() => (
+          <>
+            <div className={styles.container}>
+              <h2 key={practice._id} className={styles.practiceTitle}>
+                {practice.title}
+              </h2>
 
-      {/* PRACTICE ITEM ONE */}
-      <div className={styles.container}>
-        <h2 className={styles.practiceTitle}>Exercises 20-25</h2>
-        <p className={styles.reps}>n/a</p>
-        <h3 className="font-bold text-[#9FDCE3] text-sm col-start-1 col-span-3 mb-2">
-          Correct finger patterns
-        </h3>
-        {/* <p className={styles.bars}>BARS</p> */}
-        <div className={styles.notesContainer}>
-          <p className={styles.notes}>Notes</p>
-          <p className={styles.notesDescription}>
-            Use the metronome, work slowly
-          </p>
-        </div>
-      </div>
+              <p key={practice._id} className={styles.reps}>
+                {practice.reps}
+              </p>
+
+              <h3 key={practice._id} className={styles.aims}>
+                {practice.aims}
+              </h3>
+
+              {/* <p className={styles.bars}>BARS</p> */}
+
+              <div className={styles.notesContainer}>
+                <p className={styles.notes}>Notes</p>
+                <p key={practice._id} className={styles.notesDescription}>
+                  {practice.notes}
+                </p>
+              </div>
+            </div>
+          </>
+        ))}
     </div>
   );
 };
