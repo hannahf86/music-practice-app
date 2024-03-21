@@ -8,8 +8,6 @@ const PracticeItem = () => {
   const goBack = useNavigate();
 
   const styles = {
-    background: "",
-    title: "text-2xl text-[#95ADBE] text-center pt-8",
     button: "pt-8 pl-8",
   };
 
