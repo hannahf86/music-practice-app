@@ -1,6 +1,6 @@
 // REACT
 import { useEffect } from "react";
-import { usePracticeContext } from "../Contexts/PracticeContext";
+import { usePracticeContext } from "../Hooks/usePracticeContext";
 
 // REACT ROUTER DOM
 import { Link } from "react-router-dom";
