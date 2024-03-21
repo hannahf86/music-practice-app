@@ -2,29 +2,44 @@
 import { Link } from "react-router-dom";
 
 // ICONS
-import {} from "react-icons/fa";
+import { FaTrophy } from "react-icons/fa";
 
 const Dashboard = () => {
   const styles = {
     background: "",
-    title: "text-2xl text-[#95ADBE] text-center pt-8",
-    subtitle: "text-lg text-[#95ADBE] text-left",
-    goalContainer: "drop-shadow-md p-8",
-    weeklyContainer: "p-8",
-    itemTitle: "text-md text-[#95ADBE] text-left",
-    itemContainer: "drop-shadow-md p-4",
+    welcomeContainer: "flex justify-between items-center px-8 pt-8",
+    title: "text-2xl text-titleBlue text-left font-bold",
+    trophyContainer:
+      "flex flex-col justify-center items-center text-accent rounded-lg px-4 pt-3 pb-2 shadow-md shadow-lightGrey",
+    subtitle: "text-lg text-titleBlue text-left font-bold",
+    goalContainer: "shadow-md shadow-lightGrey rounded-xl mx-8 my-12 p-8 ",
+    weeklyContainer: "shadow-md shadow-lightGrey rounded-xl mx-8 my-12 p-8 ",
+    itemTitle: "text-md text-titleBlue text-left ",
+    itemContainer: "shadow-md rounded-lg px-4 py-4 mt-4",
   };
 
   return (
     <div id="/">
-      <div>
-        <h1 className={styles.title}>Welcome back</h1>
+      <div className={styles.welcomeContainer}>
+        <h1 className={styles.title}>
+          Welcome back
+          <br />
+          Steve!
+        </h1>
+        <div className={styles.trophyContainer}>
+          <FaTrophy size={35} />
+          <p className="text-accent text-center text-sm pt-2">
+            Progress
+            <br />
+            Tracker
+          </p>
+        </div>
       </div>
 
       <div className={styles.goalContainer}>
         <h2 className={styles.subtitle}>Long Term Goal</h2>
         <div>
-          <p>
+          <p className="text-black">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti,
             ratione.
           </p>
@@ -32,38 +47,41 @@ const Dashboard = () => {
       </div>
 
       <div className={styles.weeklyContainer}>
-        <h2 className={styles.subtitle}>Weekly Practice Targets</h2>
+        <Link to="practice">
+          <h2 className={styles.subtitle}>Weekly Practice Targets</h2>
+        </Link>
         <div>
           <div className={styles.itemContainer}>
-            <Link to="/" element={""}>
+            <Link to="practiceItem">
               <h3 className={styles.itemTitle}>ITEM ONE</h3>
             </Link>
-            <p>
+            <p className="text-black">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt,
               dolorem.
             </p>
           </div>
 
           <div className={styles.itemContainer}>
-            <Link to="/" element={""}>
+            <Link to="practiceItem">
               <h3 className={styles.itemTitle}>ITEM TWO</h3>{" "}
             </Link>
-            <p>
+            <p className="text-black">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt,
               dolorem.
             </p>
           </div>
 
           <div className={styles.itemContainer}>
-            <Link to="/" element={""}>
+            <Link to="practiceItem">
               <h3 className={styles.itemTitle}>ITEM THREE</h3>
             </Link>
-            <p>
+            <p className="text-black">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt,
               dolorem.
             </p>
           </div>
         </div>
+        <div className="mb-30"></div>
       </div>
     </div>
   );
