@@ -1,5 +1,7 @@
 # Music Practice Journal
-[Case Study](https://hannahbullickdesigns.wordpress.com/music-practice-journal/)
+Read more here [UX Case Study](https://hannahbullickdesigns.wordpress.com/music-practice-journal/)
+
+Link to the live site [Coming soon...!]
 
 ## Aim of the app
 The Music Practice Journal is a mobile app that allows music teachers and students to monitor and organise their music practice.
