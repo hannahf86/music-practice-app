@@ -13,7 +13,7 @@ const Practice = () => {
 
   useEffect(() => {
     const fetchPractice = async () => {
-      const response = await fetch("https://music-practice-app.vercel.app/");
+      const response = await fetch("https://localhost:3000/api/routes");
       const json = await response.json();
 
       if (response.ok) {
@@ -51,12 +51,10 @@ const Practice = () => {
       <h1 className={styles.title}>Weekly Practice Goals</h1>
 
       {practice &&
-        practice.map(() => (
+        practice.map((practice) => (
           <>
             <div className={styles.container}>
-              <h2 key={practice._id} className={styles.practiceTitle}>
-                {practice.title}
-              </h2>
+              <h2 key={practice._id} className={styles.practiceTitle}></h2>
 
               <p key={practice._id} className={styles.reps}>
                 {practice.reps}
