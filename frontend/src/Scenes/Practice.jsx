@@ -2,41 +2,41 @@
 import { Link } from "react-router-dom";
 
 // REACT
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // ICONS
 import { FaArrowLeft } from "react-icons/fa";
 
 const Practice = () => {
-  const [practice, setPractice] = useState(null);
+  // const [practice, setPractice] = useState(null);
 
-  useEffect(() => {
-    const fetchPractice = async () => {
-      const response = await fetch("https://localhost:3000/api/routes");
-      const json = await response.json();
+  // useEffect(() => {
+  //   const fetchPractice = async () => {
+  //     const response = await fetch("https://localhost:3000/api/routes");
+  //     const json = await response.json();
 
-      if (response.ok) {
-        setPractice(json);
-      }
-    };
-    fetchPractice;
-  }, []);
+  //     if (response.ok) {
+  //       setPractice(json);
+  //     }
+  //   };
+  //   fetchPractice;
+  // }, []);
 
   const goBack = useNavigate();
 
   const styles = {
     background: "",
-    title: "text-2xl text-[#95ADBE] text-center pt-8",
+    title: "text-2xl text-titleBlue text-center pt-8",
     button: "pt-8 pl-8",
-    container: "m-8 p-6 shadow-lg rounded-lg grid grid-cols-3",
+    container: "m-8 p-6 shadow-lg shadow-lightGrey rounded-lg grid grid-cols-3",
     practiceTitle:
-      "text-md font-bold text-[#707070] col-start-1 col-span-2 mb-2",
-    reps: "text-[#707070] text-md font-bold col-start-3 place-self-end mb-2",
-    aims: "text-[#FCD056] font-bold col-start-1 col-span-3 mb-2",
+      "text-md font-bold text-darkGrey col-start-1 col-span-2 mb-2",
+    reps: "text-darkGrey text-md font-bold col-start-3 place-self-end mb-2",
+    aims: "text-yellow font-bold col-start-1 col-span-3 mb-2",
     notesContainer: " col-start-1 col-span-3",
-    notes: "font-bold text-[#707070] text-sm",
-    notesDescription: "mb-2 text-sm",
+    notes: "font-bold text-lightGrey text-sm",
+    notesDescription: "mb-2 text-sm ",
   };
 
   return (
@@ -50,31 +50,23 @@ const Practice = () => {
       </div>
       <h1 className={styles.title}>Weekly Practice Goals</h1>
 
-      {practice &&
-        practice.map((practice) => (
-          <>
-            <div className={styles.container}>
-              <h2 key={practice._id} className={styles.practiceTitle}></h2>
+      <div className={styles.container}>
+        <h2 className={styles.practiceTitle}>Sonatina by Mozart</h2>
 
-              <p key={practice._id} className={styles.reps}>
-                {practice.reps}
-              </p>
+        <p className={styles.reps}>10 reps</p>
 
-              <h3 key={practice._id} className={styles.aims}>
-                {practice.aims}
-              </h3>
+        <h3 className={styles.aims}>Aim: Intonation</h3>
 
-              {/* <p className={styles.bars}>BARS</p> */}
+        <p className={styles.bars}>Bars: 12-16</p>
 
-              <div className={styles.notesContainer}>
-                <p className={styles.notes}>Notes</p>
-                <p key={practice._id} className={styles.notesDescription}>
-                  {practice.notes}
-                </p>
-              </div>
-            </div>
-          </>
-        ))}
+        <div className={styles.notesContainer}>
+          <p className={styles.notes}>Notes</p>
+          <p className={styles.notesDescription}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed,
+            facilis.
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

@@ -10,7 +10,7 @@ const cors = require('cors')
 const app = express()
 app.use(cors(
     {
-        origin: ['https://music-practice-app-frontend.vercel.app/'],
+        origin: ['http://localhost:5173/'],
         methods: ['POST', 'GET'],
         credentials: true
     }

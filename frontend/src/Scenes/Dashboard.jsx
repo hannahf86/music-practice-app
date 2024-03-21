@@ -1,3 +1,6 @@
+// REACT
+import { useEffect, useState } from "react";
+
 // REACT ROUTER DOM
 import { Link } from "react-router-dom";
 
@@ -5,6 +8,21 @@ import { Link } from "react-router-dom";
 import { FaTrophy } from "react-icons/fa";
 
 const Dashboard = () => {
+  const [practices, setPractices] = useState(null);
+
+  useEffect(() => {
+    const fetchPractice = async () => {
+      const response = await fetchPractice("http://localhost:3000/api/routes");
+      const json = await response.json();
+
+      if (response.ok) {
+        setPractices(json);
+      }
+    };
+
+    fetchPractice();
+  }, []);
+
   const styles = {
     background: "",
     welcomeContainer: "flex justify-between items-center px-8 pt-8",
@@ -46,43 +64,49 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className={styles.weeklyContainer}>
-        <Link to="practice">
-          <h2 className={styles.subtitle}>Weekly Practice Targets</h2>
-        </Link>
-        <div>
-          <div className={styles.itemContainer}>
-            <Link to="practiceItem">
-              <h3 className={styles.itemTitle}>ITEM ONE</h3>
-            </Link>
-            <p className="text-black">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt,
-              dolorem.
-            </p>
-          </div>
+      {/* PRACTICE ITEMS */}
+      {practices &&
+        practices.map(() => (
+          <>
+            <div className={styles.weeklyContainer}>
+              <Link to="practice">
+                <h2 className={styles.subtitle}>Weekly Practice Targets</h2>
+              </Link>
+              <div>
+                <div className={styles.itemContainer}>
+                  <Link to="practiceItem">
+                    <h3 className={styles.itemTitle}>ITEM ONE</h3>
+                  </Link>
+                  <p className="text-black">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Deserunt, dolorem.
+                  </p>
+                </div>
 
-          <div className={styles.itemContainer}>
-            <Link to="practiceItem">
-              <h3 className={styles.itemTitle}>ITEM TWO</h3>{" "}
-            </Link>
-            <p className="text-black">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt,
-              dolorem.
-            </p>
-          </div>
+                <div className={styles.itemContainer}>
+                  <Link to="practiceItem">
+                    <h3 className={styles.itemTitle}>ITEM TWO</h3>{" "}
+                  </Link>
+                  <p className="text-black">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Deserunt, dolorem.
+                  </p>
+                </div>
 
-          <div className={styles.itemContainer}>
-            <Link to="practiceItem">
-              <h3 className={styles.itemTitle}>ITEM THREE</h3>
-            </Link>
-            <p className="text-black">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt,
-              dolorem.
-            </p>
-          </div>
-        </div>
-        <div className="mb-30"></div>
-      </div>
+                <div className={styles.itemContainer}>
+                  <Link to="practiceItem">
+                    <h3 className={styles.itemTitle}>ITEM THREE</h3>
+                  </Link>
+                  <p className="text-black">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Deserunt, dolorem.
+                  </p>
+                </div>
+              </div>
+              <div className="mb-30"></div>
+            </div>
+          </>
+        ))}
     </div>
   );
 };
