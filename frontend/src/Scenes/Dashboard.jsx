@@ -1,5 +1,6 @@
 // REACT
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { usePracticeContext } from "../Contexts/PracticeContext";
 
 // REACT ROUTER DOM
 import { Link } from "react-router-dom";
@@ -8,7 +9,7 @@ import { Link } from "react-router-dom";
 import { FaTrophy } from "react-icons/fa";
 
 const Dashboard = () => {
-  const [practices, setPractices] = useState(null);
+  const [practices, dispatch] = usePracticeContext();
 
   useEffect(() => {
     const fetchPractice = async () => {
@@ -16,7 +17,7 @@ const Dashboard = () => {
       const json = await response.json();
 
       if (response.ok) {
-        setPractices(json);
+        dispatch({ type: "SET_PRACTICE", payload: json });
       }
     };
 
